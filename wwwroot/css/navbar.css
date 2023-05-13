@@ -1,0 +1,29 @@
+﻿:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #f39c12;
+}
+
+.navbar {
+    background-color: var(--primary-color);
+}
+
+.navbar-brand, .nav-link {
+    color: white;
+}
+
+    .nav-link:hover {
+        color: var(--accent-color);
+    }
+
+.dropdown-menu {
+    background-color: var(--secondary-color);
+}
+
+.dropdown-item {
+    color: white;
+}
+
+    .dropdown-item:hover {
+        background-color: var(--accent-color);
+    }

@@ -1,0 +1,121 @@
+﻿@model IEnumerable<CarRentalHajurKo.Models.Car>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .btn-margin {
+        margin-right: 4px;
+    }
+
+/*    .btn {
+        background-color: #007bff;
+        border-color: #007bff;
+    }*/
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 14px;
+    }
+
+        .btn-container a {
+            display: inline-block;
+            margin-right: 4px;
+            padding: 6px 12px;
+            color: #fff;
+/*            background-color: #337ab7;
+            border-color: #2e6da4;*/
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+/*            .btn-container a:hover {
+                background-color: #286090;
+                border-color: #204d74;
+            }
+*/
+            .btn-container a:last-child {
+                margin-right: 0;
+            }
+
+
+
+
+</style>
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <img src="@Url.Content("~/images/" + item.PhotoUrl)" alt="Image" width="100" height="100" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                
+                <td class="btn-container">
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary btn-margin">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-margin">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-margin">Delete</a>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

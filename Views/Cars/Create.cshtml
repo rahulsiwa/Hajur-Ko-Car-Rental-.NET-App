@@ -1,0 +1,109 @@
+﻿@model CarRentalHajurKo.Models.Car
+
+@{
+    ViewData["Title"] = "Create";
+}
+<style>
+
+    .custom-file-button input[type=file] {
+        margin-left: -2px !important;
+    }
+
+        .custom-file-button input[type=file]::-webkit-file-upload-button {
+            display: none;
+        }
+
+        .custom-file-button input[type=file]::file-selector-button {
+            display: none;
+        }
+
+    .custom-file-button:hover label {
+        background-color: #dde0e3;
+        cursor: pointer;
+    }
+
+</style>
+
+<h1>Create</h1>
+
+<h4>Car</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegistrationNo" class="control-label"></label>
+                <input asp-for="RegistrationNo" class="form-control" />
+                <span asp-validation-for="RegistrationNo" class="text-danger"></span>
+
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+
+                <div class="col-md-12 btn-group pb-2">
+                    <div class="form-group col-4 p-0">
+                        <label asp-for="Photo" class="control-label"></label>
+                        <img id="PreviewPhoto" src="~/images/noimage.jpg" alt="Logo Image"
+                                          width="125" height="125" />
+                        <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+                    </div>
+                    <div class="col-1 p-0">
+                    </div>
+                    <div class="form-group col-7 p-0">
+                        <div class="input-group custom-file-button mt-5 pt-5">
+                            <input asp-for="Photo" class="form-control custom-file-input" id="customFile">
+                            <label class="input-group-text" for="customFile">Browse</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label">Status</label>
+                    <input asp-for="Status" class="form-control" />
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin-top: 10px;">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+                <div class="form-group pt-0 mt-0">
+                    <div ID="HiddenDiv" style="visibility: hidden;">
+                        <input asp-for="PhotoUrl" id="PhotoUrl" value="" />
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+
+    </script>
+}

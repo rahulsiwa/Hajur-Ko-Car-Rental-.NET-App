@@ -1,0 +1,182 @@
+﻿@model IEnumerable<CarRentalHajurKo.Models.Car>
+@{
+    ViewData["Title"] = "Home Page";
+    //Layout = "~?Views/Shared/_Layout.cshtml";
+}
+
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+    <div id="success-message" class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Hajur Ko Car Rental</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/homeCss.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <style>
+        /* Add your internal CSS here */
+        .card {
+            width: 100%;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            }
+
+        img.card-img-top {
+            width: 100%;
+            height: 10rem;
+            object-fit: cover;
+        }
+
+        .card-header {
+            padding: 1rem;
+            text-align: center;
+            background-color: #f7f7f7;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-top: auto;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        .btn-book {
+            padding: 0.5rem 2rem;
+            background-color: green;
+            border-color: green;
+        }
+
+        .card-footer {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-container {
+            padding: 0;
+        }
+
+        .card-footer {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-container {
+            padding: 0;
+        }
+        /* Status CSS classes */
+        .status-available {
+            color: green;
+        }
+
+        .status-not-available {
+            color: red;
+        }
+
+        .btn-book-disabled {
+            background-color: #f37070;
+            border-color: #f37070;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="row justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">@item.Name</h5>
+                    </div>
+                    <img src="@Url.Content("~/images/" + item.PhotoUrl)" alt="Image" class="card-img-top" />
+
+                    @{
+                        var statusClass = item.Status == "Available" ? "status-available" : "status-not-available";
+                    }
+
+                    <div class="card-footer">
+                        <div class="footer-row">
+                            <div class="col-12 text-center">
+                                <h6>Rs.&nbsp;@item.Price /day &nbsp;&nbsp; <span class="@statusClass"> @item.Status </span></h6>
+                            </div>
+                        </div>
+                        <div class="footer-row">
+                            <div class="col-12 d-flex justify-content-around">
+                                <a href="@Url.Action("Details", "Cars", new { id = item.Id })" target="_blank" class="btn btn-sm btn-outline-secondary">View More</a>
+                                <a class="nav-link text-dark btn-container" asp-area="" asp-controller="@(item.Status == "Available" ? "Orders" : "None")" asp-action="@(item.Status == "Available" ? "Create" : "None")">
+                                    <button id="book-button" type="button" class="btn btn-sm btn-primary btn-book" onclick="bookButtonClick()" @(item.Status == "Not Available" ? "disabled" : "")>Book</button>
+
+
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        setTimeout(function () {
+            $('#success-message').fadeOut('slow');
+        }, 3000);
+    </script>
+    <script>
+        function showAlertIfUnavailable(status) {
+            if (status === 'Not Available') {
+                alert('Cannot book the unavailable car. Please try again later.');
+            }
+        }
+    </script>
+    <script>
+        function bookButtonClick() {
+            // Perform some action when the button is clicked
+        }
+
+        // Disable the button if the item is not available
+        if (`${item.Status}` === "Not Available") {
+            var bookButton = document.getElementById("book-button");
+            bookButton.disabled = true;
+        }
+    </script>
+
+</body>
+</html>

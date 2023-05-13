@@ -1,0 +1,95 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model CarRentalHajurKo.Models.DamageRequest
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+
+<body>
+    <h1 class="text-center mb-4">Create</h1>
+
+    <h4 class="text-center mb-3">DamageRequest</h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="OrderNo" class="control-label"></label>
+                        <input asp-for="OrderNo" class="form-control" />
+                        <span asp-validation-for="OrderNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CustomerID" class="control-label"></label>
+                        <input asp-for="CustomerID" class="form-control" value="@UserManager.GetUserId(User)" />
+                        <span asp-validation-for="CustomerID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Phone" class="control-label"></label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Model" class="control-label"></label>
+                        <input asp-for="Model" class="form-control" />
+                        <span asp-validation-for="Model" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DamagePart" class="control-label"></label>
+                        <input asp-for="DamagePart" class="form-control" />
+                        <span asp-validation-for="DamagePart" class="text-danger"></span>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="form-group col-md-4">
+                            <label asp-for="DamagedPartPhoto" class="control-label"></label>
+                            <img id="PreviewPhoto" src="~/images/noimage.jpg" alt="Logo Image" class="img-thumbnail" width="125" height="125" />
+                            <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-1">
+                        </div>
+                        <div class="form-group col-md-7">
+                            <div class="input-group custom-file-button mt-5 pt-5">
+<input asp-for="DamagedPartPhoto" class="form-control custom-file-input" id="customFile">
+<label class="input-group-text" for="customFile">Browse</label>
+</div>
+</div>
+</div>
+<div class="form-group">
+<input type="submit" value="Create" class="btn btn-primary" />
+</div>
+</form>
+</div>
+</div>
+        <div class="mt-3 text-center">
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+        @section Scripts {
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+
+            <script type="text/javascript">
+
+            </script>
+        }
+    </div>
+</body>
+</html>

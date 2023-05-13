@@ -1,0 +1,79 @@
+﻿@model CarRentalHajurKo.Models.DamageReport
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+
+<body>
+    <h1 class="text-center mb-4">Create</h1>
+
+    <h4 class="text-center mb-3">DamageReport</h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="OrderNo" class="control-label"></label>
+                        <input asp-for="OrderNo" class="form-control" />
+                        <span asp-validation-for="OrderNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CustomerID" class="control-label"></label>
+                        <input asp-for="CustomerID" class="form-control" />
+                        <span asp-validation-for="CustomerID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CustomerName" class="control-label"></label>
+                        <input asp-for="CustomerName" class="form-control" />
+                        <span asp-validation-for="CustomerName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CarModel" class="control-label"></label>
+                        <input asp-for="CarModel" class="form-control" />
+                        <span asp-validation-for="CarModel" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DamagePart" class="control-label"></label>
+                        <input asp-for="DamagePart" class="form-control" />
+                        <span asp-validation-for="DamagePart" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DamageFee" class="control-label"></label>
+                        <input asp-for="DamageFee" class="form-control" />
+                        <span asp-validation-for="DamageFee" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="mt-3 text-center">
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </body>
+
+        @section Scripts {
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+        }
